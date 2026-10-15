@@ -23,7 +23,7 @@
 
     <!-- Apps -->
     <string name="apps_title">Block apps</string>
-    <string name="apps_subtitle">Blocked apps get no internet while blocking is on. All other apps work normally.</string>
+    <string name="apps_subtitle">Blocked apps get no internet while blocking is on. All other apps work normally. If a blocked app is open on screen when you block it, close it and reopen it so the block takes effect.</string>
     <string name="search_apps">Search apps</string>
     <string name="no_apps_match">No apps match your search.</string>
     <string name="back">Back</string>

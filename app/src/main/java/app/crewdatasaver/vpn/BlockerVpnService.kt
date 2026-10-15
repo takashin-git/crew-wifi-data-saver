@@ -1,5 +1,6 @@
 package app.crewdatasaver.vpn
 
+import android.app.ActivityManager
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
@@ -113,8 +114,45 @@ class BlockerVpnService : VpnService() {
         // Close the previous interface only after the new one is up (avoids a gap that
         // would let blocked apps briefly reach the network).
         closeQuietly(old)
-        if (newTun != null) startDrain(newTun)
+        if (newTun != null) {
+            startDrain(newTun)
+            dropExistingConnections(config)
+        }
         updateNotification(text)
+    }
+
+    /**
+     * A VPN only captures sockets opened after it is established: connections an app already
+     * had open (e.g. TikTok's video streams) keep using Wi-Fi. Restarting the captured apps'
+     * background processes forces them to reconnect, and the new connections hit the blackhole.
+     * Only background processes are affected; an app in the foreground is left alone.
+     */
+    private fun dropExistingConnections(config: Config) {
+        val targets: Set<String> = when (config) {
+            Config.Off -> return
+            is Config.BlockList -> config.packages
+            is Config.Lockdown -> launchablePackages() - config.allowlist
+        }
+        val am = getSystemService(ActivityManager::class.java) ?: return
+        for (pkg in targets) {
+            if (pkg == packageName) continue
+            try {
+                am.killBackgroundProcesses(pkg)
+            } catch (e: SecurityException) {
+                Log.w(TAG, "Could not restart $pkg", e)
+            }
+        }
+    }
+
+    private fun launchablePackages(): Set<String> {
+        val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+        val resolved = if (Build.VERSION.SDK_INT >= 33) {
+            packageManager.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(0L))
+        } else {
+            @Suppress("DEPRECATION")
+            packageManager.queryIntentActivities(intent, 0)
+        }
+        return resolved.mapTo(HashSet()) { it.activityInfo.packageName }
     }
 
     private fun baseBuilder(): Builder = Builder()
