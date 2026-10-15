@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English strings. Add values-ja/strings.xml with the same names to localise into Japanese. -->
+<resources>
+    <string name="app_name">Crew Data Saver</string>
+
+    <!-- Tabs -->
+    <string name="tab_home">Home</string>
+    <string name="tab_apps">Block apps</string>
+    <string name="tab_allowance">Allowance</string>
+
+    <!-- Home -->
+    <string name="blocking_on">Blocking is ON</string>
+    <string name="blocking_off">Blocking is OFF</string>
+    <string name="blocking_off_detail">Turn on to cut off the apps you selected.</string>
+    <string name="blocking_none_selected">No apps selected yet. Choose apps to block.</string>
+    <string name="lockdown_active_detail">Allowance used up: lockdown is blocking all apps except your allowlist.</string>
+    <plurals name="blocking_count">
+        <item quantity="one">%d app has no internet access.</item>
+        <item quantity="other">%d apps have no internet access.</item>
+    </plurals>
+    <string name="choose_apps">Choose apps to block</string>
+    <string name="home_footer">Crew Data Saver uses Android\'s VPN feature only to cut off the apps you choose. It does not send your traffic anywhere, has no servers and collects no data.</string>
+
+    <!-- Apps -->
+    <string name="apps_title">Block apps</string>
+    <string name="apps_subtitle">Blocked apps get no internet while blocking is on. All other apps work normally.</string>
+    <string name="search_apps">Search apps</string>
+    <string name="no_apps_match">No apps match your search.</string>
+    <string name="back">Back</string>
+
+    <!-- Allowance -->
+    <string name="allowance_title">Data allowance</string>
+    <string name="allowance_amount">Allowance for this period</string>
+    <string name="allowance_mb_label">Allowance (MB)</string>
+    <string name="save">Save</string>
+    <string name="period_start">Period started</string>
+    <string name="reset_now">Reset now</string>
+    <string name="pick_date">Pick date</string>
+    <string name="used_of">%1$s of %2$s used</string>
+    <string name="remaining">%1$s remaining</string>
+    <string name="since">Since %1$s</string>
+    <string name="usage_loading">Reading usage…</string>
+    <string name="top_apps">Top data users this period</string>
+    <string name="top_apps_empty">No Wi-Fi usage recorded yet.</string>
+    <string name="usage_note">Wi-Fi usage as counted by Android. It may differ slightly from the ship\'s meter and can lag by a few minutes.</string>
+
+    <!-- Lockdown -->
+    <string name="lockdown_title">Lockdown when allowance is used up</string>
+    <string name="lockdown_desc" formatted="false">At 100%, block every app except the ones on your allowlist (for example, messaging apps).</string>
+    <plurals name="allowlist_count">
+        <item quantity="one">%d app on the allowlist.</item>
+        <item quantity="other">%d apps on the allowlist.</item>
+    </plurals>
+    <string name="edit_allowlist">Edit allowlist</string>
+    <string name="allowlist_title">Lockdown allowlist</string>
+    <string name="allowlist_subtitle">These apps keep internet access during lockdown.</string>
+    <string name="lockdown_needs_blocking">Lockdown only works while blocking is turned on (Home tab).</string>
+
+    <!-- Usage access -->
+    <string name="usage_access_needed_short">To track your allowance, allow usage access.</string>
+    <string name="grant_access">Set up usage access</string>
+    <string name="usage_access_title">Allow usage access</string>
+    <string name="usage_access_body1">Crew Data Saver needs \"Usage access\" to read how much Wi-Fi data each app has used since your period started. Android keeps these counters; the app only reads them.</string>
+    <string name="usage_access_body2" formatted="false">This is used only to show your used and remaining allowance, list the top data-consuming apps, and warn you at 50%, 80% and 100%.</string>
+    <string name="usage_access_body3">Nothing leaves your phone. On the next screen, find Crew Data Saver and switch on \"Permit usage access\", then come back.</string>
+    <string name="open_usage_settings">Open usage access settings</string>
+    <string name="done">Done</string>
+
+    <!-- Usage labels -->
+    <string name="uid_removed">Removed apps</string>
+    <string name="uid_tethering">Hotspot / tethering</string>
+    <string name="uid_system">Android system</string>
+    <string name="uid_unknown">Unknown (uid %1$d)</string>
+    <string name="uid_shared">%1$s + %2$d more</string>
+
+    <!-- Notifications -->
+    <string name="channel_vpn">Blocking status</string>
+    <string name="channel_vpn_desc">Shown while app blocking is active.</string>
+    <string name="channel_allowance">Allowance warnings</string>
+    <string name="channel_allowance_desc" formatted="false">Warnings at 50%, 80% and 100% of your data allowance.</string>
+    <string name="vpn_notif_title">Crew Data Saver is blocking</string>
+    <string name="vpn_notif_starting">Starting…</string>
+    <string name="vpn_notif_nothing">No apps selected. Nothing is blocked.</string>
+    <string name="vpn_notif_error">Could not start blocking. Open the app and turn blocking on again.</string>
+    <string name="vpn_notif_lockdown">Lockdown: only allowlisted apps have internet.</string>
+    <plurals name="vpn_notif_blocking">
+        <item quantity="one">%d app blocked</item>
+        <item quantity="other">%d apps blocked</item>
+    </plurals>
+    <string name="action_stop">Stop</string>
+    <string name="warn_title_percent">%1$d%% of your data allowance used</string>
+    <string name="warn_title_full">Data allowance used up</string>
+    <string name="warn_text_percent">Consider blocking apps you don\'t need right now.</string>
+    <string name="warn_text_full" formatted="false">You have used 100% of your allowance for this period.</string>
+    <string name="warn_text_lockdown">Lockdown is on: only your allowlisted apps can use the internet.</string>
+</resources>
