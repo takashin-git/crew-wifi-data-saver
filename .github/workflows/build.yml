@@ -5,6 +5,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -47,3 +50,15 @@ jobs:
           name: crew-data-saver-debug
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      # Also keep the latest main-branch APK on an "apk" branch (handy for direct download).
+      - name: Publish APK to apk branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir out && cp app/build/outputs/apk/debug/app-debug.apk out/crew-data-saver-debug.apk
+          cd out
+          git init -q -b apk
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add . && git commit -q -m "Debug APK from ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" apk
